@@ -1,0 +1,40 @@
+{
+  "name": "@reactivedb/core",
+  "version": "0.0.1",
+  "description": "Relation Database in NodeJS & Browser",
+  "main": "index.js",
+  "dependencies": {
+    "tslib": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.28",
+    "npm-run-all": "^4.1.1",
+    "shx": "^0.2.2",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "^2.5.2"
+  },
+  "scripts": {
+    "build_cjs": "npm-run-all clean_cjs compile_cjs",
+    "clean_cjs": "shx rm -rf lib",
+    "compile_cjs": "tsc -p ./src/tsconfig.json",
+    "lint": "tslint -c tslint.json --project ./src/tsconfig.json --type-check",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Relation",
+    "Database",
+    "ReactiveDB"
+  ],
+  "author": "lynweklm@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ReactiveDB/Relational-Database.git"
+  },
+  "bugs": {
+    "email": "lynweklm@gmail.com",
+    "url": "https://github.com/ReactiveDB/Relational-Database/issues"
+  }
+}
