@@ -8,19 +8,26 @@
   },
   "devDependencies": {
     "@types/node": "^8.0.28",
+    "@types/sinon": "^2.3.4",
+    "ava": "^0.22.0",
     "npm-run-all": "^4.1.1",
     "shx": "^0.2.2",
+    "sinon": "^3.3.0",
+    "tap-diff": "^0.1.1",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
     "tslint-eslint-rules": "^4.1.1",
     "typescript": "^2.5.2"
   },
   "scripts": {
-    "build_cjs": "npm-run-all clean_cjs compile_cjs",
-    "clean_cjs": "shx rm -rf lib",
-    "compile_cjs": "tsc -p ./src/tsconfig.json",
+    "build:src": "npm-run-all clean:cjs tsc:src",
+    "clean:cjs": "shx rm -rf lib",
     "lint": "tslint -c tslint.json --project ./src/tsconfig.json --type-check",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava | tap-diff",
+    "tsc:src": "tsc -p ./src/tsconfig.json",
+    "watch": "npm-run-all -p watch:src watch:ava",
+    "watch:ava": "sleep 1 && ava -w --color | tap-diff",
+    "watch:src": " npm run tsc:src  -- -w --diagnostics --pretty"
   },
   "keywords": [
     "Relation",
@@ -36,5 +43,16 @@
   "bugs": {
     "email": "lynweklm@gmail.com",
     "url": "https://github.com/ReactiveDB/Relational-Database/issues"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "source": [
+      "lib/**/*.js"
+    ],
+    "failWithoutAssertions": true,
+    "tap": true,
+    "color": true
   }
 }
